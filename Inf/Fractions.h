@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 #include <cassert>
+#include <string>
+
 class Fractions
 {
 private:
@@ -36,8 +38,43 @@ public:
 	Fractions& operator=(const Fractions fraction);
 	Fractions& operator=(const int number);
 
+	Fractions operator+() const;
+	Fractions operator-() const;
+
+	Fractions& operator++();
+	Fractions operator++(int);
+
+	Fractions& operator--();
+	Fractions operator--(int);
+
+	void operator+=(const Fractions fraction);
+	void operator+=(const int term);
+
+	void operator-=(const Fractions fraction);
+	void operator-=(const int term);
+
+	void operator*=(const Fractions fraction);
+	void operator*=(const int term);
+
+	void operator/=(const Fractions fraction);
+	void operator/=(const int term);
+
 	bool operator==(const Fractions fraction) const;
 	bool operator==(const int temp) const;
 
+	bool operator<(const Fractions fraction) const;
+	bool operator<(const int temp) const;
+
+	bool operator>(const Fractions fraction) const;
+	bool operator>(const int temp) const;
+
+	bool operator>=(const Fractions fraction) const;
+	bool operator>=(const int temp) const;
+
+	bool operator<=(const Fractions fraction) const;
+	bool operator<=(const int temp) const;
+
+	bool operator!=(const Fractions fraction) const;
+	bool operator!=(const int temp) const;
 
 };

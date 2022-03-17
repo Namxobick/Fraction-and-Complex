@@ -35,7 +35,6 @@ int Fractions::LCM(int first, int second) const
 	return (first * second) / GCD(first, second);
 }
 
-
 void Fractions::Reduction(int &numerator, int &denominator)
 {
 	assert(!denominator == 0);
@@ -65,8 +64,8 @@ std::ostream& operator<<(std::ostream& out, const Fractions& fraction)
 std::istream& operator>>(std::istream& in, Fractions& fraction)
 {
 	int numerator, denominator;
-	in >> numerator;
-	in >> denominator;
+	std::cout << "Enter the numerator and denominator separated by a space" << std::endl;
+	in >> numerator >> denominator;
 
 	fraction.Reduction(numerator, denominator);
 
@@ -190,6 +189,83 @@ Fractions& Fractions::operator=(const int number)
 	return *this;
 }
 
+Fractions Fractions::operator+() const
+{
+	return *this;
+}
+
+Fractions Fractions::operator-() const
+{
+	return Fractions(-_numerator, _denominator);
+}
+
+Fractions& Fractions::operator++()
+{
+	_numerator += _denominator;
+	return *this;
+}
+
+Fractions Fractions::operator++(int)
+{
+	Fractions fraction = *this;
+	++*this;
+	return fraction;
+}
+
+Fractions& Fractions::operator--()
+{
+	_numerator -= _denominator;
+	return *this;
+}
+
+Fractions Fractions::operator--(int)
+{
+	Fractions fraction = *this;
+	--*this;
+	return fraction;
+}
+
+void Fractions::operator+=(const Fractions fraction)
+{
+	*this = *this + fraction;
+	
+}
+
+void Fractions::operator+=(const int term)
+{
+	*this = *this + term;
+}
+
+void Fractions::operator-=(const Fractions fraction)
+{
+	*this = *this - fraction;
+}
+
+void Fractions::operator-=(const int term)
+{
+	*this = *this - term;
+}
+
+void Fractions::operator*=(const Fractions fraction)
+{
+	*this = *this * fraction;
+}
+
+void Fractions::operator*=(const int term)
+{
+	*this = *this * term;
+}
+
+void Fractions::operator/=(const Fractions fraction)
+{
+	*this = *this / fraction;
+}
+
+void Fractions::operator/=(const int term)
+{
+	*this = *this / term;
+}
+
 bool Fractions::operator==(const Fractions fraction) const
 {
 	if (_numerator == fraction._numerator && _denominator == fraction._denominator)
@@ -202,4 +278,78 @@ bool Fractions::operator==(const int temp) const
 	if (_numerator == temp && _denominator == 1)
 		return true;
 	return false;
+}
+
+bool Fractions::operator<(const Fractions fraction) const
+{
+	int lcm = LCM(abs(fraction._denominator), abs(_denominator));
+	if (_numerator * (lcm / _denominator) < fraction._numerator * (lcm / fraction._denominator))
+		return true;
+	else 
+		return false;
+}
+
+bool Fractions::operator<(const int temp) const
+{
+	Fractions fraction;
+	fraction = temp;
+	return (*this < fraction);
+}
+
+bool Fractions::operator>(const Fractions fraction) const
+{
+	int lcm = LCM(abs(fraction._denominator), abs(_denominator));
+	if (_numerator * (lcm / _denominator) > fraction._numerator * (lcm / fraction._denominator))
+		return true;
+	else
+		return false;
+}
+
+bool Fractions::operator>(const int temp) const
+{
+	Fractions fraction;
+	fraction = temp;
+	return (*this > fraction);
+}
+
+bool Fractions::operator>=(const Fractions fraction) const
+{
+	if (*this == fraction or *this > fraction)
+		return true;
+	return false;
+}
+
+bool Fractions::operator>=(const int temp) const
+{
+	if (*this == temp or *this > temp)
+		return true;
+	return false;
+}
+
+bool Fractions::operator<=(const Fractions fraction) const
+{
+	if (*this == fraction or *this < fraction)
+		return true;
+	return false;
+}
+
+bool Fractions::operator<=(const int temp) const
+{
+	if (*this == temp or *this < temp)
+		return true;
+	return false;
+}
+
+bool Fractions::operator!=(const Fractions fraction) const
+{
+	if (*this == fraction)
+		return false;
+	return true;
+}
+
+bool Fractions::operator!=(const int temp) const
+{
+	if (*this == temp)
+		return false;
+	return true;
 }
