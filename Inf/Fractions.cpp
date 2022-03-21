@@ -189,6 +189,14 @@ Fractions& Fractions::operator=(const int number)
 	return *this;
 }
 
+Fractions& Fractions::operator=(const double number)
+{
+	_numerator = number * 1000000;
+	_denominator = 1000000;
+	Reduction(_numerator, _denominator);
+	return *this;
+}
+
 Fractions Fractions::operator+() const
 {
 	return *this;
@@ -352,4 +360,14 @@ bool Fractions::operator!=(const int temp) const
 	if (*this == temp)
 		return false;
 	return true;
+}
+
+Fractions::operator int() const
+{
+	return _numerator / _denominator;
+}
+
+Fractions::operator double() const
+{
+	return (_numerator * 1.0) / _denominator;
 }

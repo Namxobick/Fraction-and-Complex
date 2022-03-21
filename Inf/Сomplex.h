@@ -15,30 +15,27 @@ private:
 public:
 	Complex();
 	Complex(int reZ, int imZ);
+	Complex(int reZ);
+	Complex(double reZ);
+	Complex(Fractions reZ);
 	Complex(Fractions reZ, int imZ);
 	Complex(int reZ, Fractions imZ);
 	Complex(Fractions reZ, Fractions imZ);
 	Complex(const Complex& obj);
 
 	Complex operator+(const Complex complex) const;
-	Complex operator+(const Fractions fractions) const;
-	Complex operator+(const int term) const;
 
 	Complex operator-(const Complex complex) const;
-	Complex operator-(const Fractions fractions) const;
-	Complex operator-(const int term) const;
 
 	Complex operator*(const Complex complex) const;
-	Complex operator*(const Fractions fractions) const;
-	Complex operator*(const int term) const;
 
 	Complex operator/(const Complex complex) const;
-	Complex operator/(const Fractions fractions) const;
-	Complex operator/(const int term) const;
+
+	Complex operator%(const Complex complex) const;
+
+	Complex operator!() const;
 
 	Complex& operator=(const Complex complex);
-	Complex& operator=(const Fractions fractions);
-	Complex& operator=(const int term);
 
 	Complex operator+() const;
 	Complex operator-() const;
@@ -50,27 +47,45 @@ public:
 	Complex operator--(int);
 
 	void operator+=(const Complex complex);
-	void operator+=(const Fractions fraction);
-	void operator+=(const int term);
 
 	void operator-=(const Complex complex);
-	void operator-=(const Fractions fraction);
-	void operator-=(const int term);
 
 	void operator*=(const Complex complex);
-	void operator*=(const Fractions fraction);
-	void operator*=(const int term);
 
 	void operator/=(const Complex complex);
-	void operator/=(const Fractions fraction);
-	void operator/=(const int term);
+
+	void operator%=(const Complex complex);
 
 	bool operator==(const Complex complex) const;
-	bool operator==(const Fractions fraction) const;
-	bool operator==(const int term) const;
 
 	bool operator!=(const Complex complex) const;
-	bool operator!=(const Fractions fraction) const;
-	bool operator!=(const int term) const;
+
+	bool operator<(const Complex complex) const;
+
+	bool operator>(const Complex complex) const;
+
+	bool operator<=(const Complex complex) const;
+
+	bool operator>=(const Complex complex) const;
+
+	operator int() const
+	{
+		return _reZ;
+	}
+
+	operator double() const
+	{
+		return _reZ;
+	}
+
+	operator Fractions() const
+	{
+		return _reZ;
+	}
+
+	operator Complex() const
+	{
+		return *this;
+	}
 };
 

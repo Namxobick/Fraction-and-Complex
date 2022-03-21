@@ -12,6 +12,24 @@ Complex::Complex(int reZ, int imZ)
 	_imZ = imZ;
 }
 
+Complex::Complex(int reZ)
+{
+	_reZ = reZ;
+	_imZ = 0;
+}
+
+Complex::Complex(double reZ)
+{
+	_reZ = reZ;
+	_imZ = 0;
+}
+
+Complex::Complex(Fractions reZ)
+{
+	_reZ = reZ;
+	_imZ = 0;
+}
+
 Complex::Complex(Fractions reZ, int imZ)
 {
 	_reZ = reZ;
@@ -70,20 +88,6 @@ Complex Complex::operator+(const Complex ñomplex) const
 	result._imZ = _imZ + ñomplex._imZ;
 	return result;
 }
-Complex  Complex::operator+(const Fractions fraction) const
-{
-	Complex result;
-	result._reZ = _reZ + fraction;
-	result._imZ = _imZ;
-	return result;
-}
-Complex Complex::operator+(const int temp) const
-{
-	Complex result;
-	result._reZ = _reZ + temp;
-	result._imZ = _imZ;
-	return result;
-}
 
 Complex Complex::operator-(const Complex ñomplex) const
 {
@@ -92,40 +96,14 @@ Complex Complex::operator-(const Complex ñomplex) const
 	result._imZ = _imZ - ñomplex._imZ;
 	return result;
 }
-Complex  Complex::operator-(const Fractions fraction) const
-{
-	Complex result;
-	result._reZ = _reZ - fraction;
-	result._imZ = _imZ;
-	return result;
-}
-Complex Complex::operator-(const int temp) const
-{
-	Complex result;
-	result._reZ = _reZ - temp;
-	result._imZ = _imZ;
-	return result;
-}
 
 Complex Complex::operator*(const Complex ñomplex) const
 {
 	Complex result;
 	result._reZ = _reZ * ñomplex._reZ - _imZ * ñomplex._imZ;
 	result._imZ = _reZ * ñomplex._imZ + _imZ * ñomplex._reZ;
-	return result;
-}
-Complex  Complex::operator*(const Fractions fraction) const
-{
-	Complex result;
-	result._reZ = _reZ * fraction;
-	result._imZ = _imZ * fraction;
-	return result;
-}
-Complex Complex::operator*(const int temp) const
-{
-	Complex result;
-	result._reZ = _reZ * temp;
-	result._imZ = _imZ * temp;
+	setlocale(LC_ALL, "Russian");
+	std::cout << "Îïåðàòîð Ìîõíàòàÿ òî÷êà ïåðåîïðåäåë¸í. Áóäüòå îñòîðîæíû!" << std::endl;
 	return result;
 }
 
@@ -136,37 +114,27 @@ Complex Complex::operator/(const Complex ñomplex) const
 	result._imZ = (_imZ * ñomplex._reZ - _reZ * ñomplex._imZ) / (ñomplex._reZ * ñomplex._reZ + ñomplex._imZ * ñomplex._imZ);
 	return result;
 }
-Complex Complex::operator/(const Fractions fraction) const
+
+Complex Complex::operator%(const Complex complex) const
 {
-	Complex result;
-	result._reZ = _reZ / fraction;
-	result._imZ = _imZ / fraction;
-	return result;
+	throw "Ñomplex numbers do not support operator %";
+	return Complex();
 }
-Complex Complex::operator/(const int temp) const
+
+Complex Complex::operator!() const
 {
+	setlocale(LC_ALL, "Russian");
+	std::cout << "Îïåðàòîð Âíèìàíèå ïåðåîïðåäåë¸í. Ìåíÿåò ìåñòàìè ÷àñòè êîìïëåêñíîãî ÷èñëà. Áóäüòå îñòîðîæíû!" << std::endl;
 	Complex result;
-	result._reZ = _reZ / temp;
-	result._imZ = _imZ / temp;
-	return result;
+	result._reZ = _imZ;
+	result._imZ = _reZ;
+	return Complex();
 }
 
 Complex& Complex::operator=(const Complex complex)
 {
 	_reZ = complex._reZ;
 	_imZ = complex._imZ;
-	return *this;
-}
-Complex& Complex::operator=(const Fractions fraction)
-{
-	_reZ = fraction;
-	_imZ = 0;
-	return *this;
-}
-Complex& Complex::operator=(const int temp)
-{
-	_reZ = temp;
-	_imZ = 0;
 	return *this;
 }
 
@@ -185,10 +153,11 @@ Complex& Complex::operator++()
 	_reZ++;
 	return *this;
 }
+
 Complex Complex::operator++(int)
 {
 	Complex complex = *this;
-	++*this;
+	++* this;
 	return complex;
 }
 
@@ -197,6 +166,7 @@ Complex& Complex::operator--()
 	_reZ--;
 	return *this;
 }
+
 Complex Complex::operator--(int)
 {
 	Complex complex = *this;
@@ -208,69 +178,30 @@ void Complex::operator+=(const Complex complex)
 {
 	*this = *this + complex;
 }
-void Complex::operator+=(const Fractions fraction)
-{
-	*this = *this + fraction;
-}
-void Complex::operator+=(const int term)
-{
-	*this = *this + term;
-}
 
 void Complex::operator-=(const Complex complex)
 {
-	*this = *this -+ complex;
-}
-void Complex::operator-=(const Fractions fraction)
-{
-	*this = *this - fraction;
-}
-void Complex::operator-=(const int term)
-{
-	*this = *this - term;
+	*this = *this - +complex;
 }
 
 void Complex::operator*=(const Complex complex)
 {
 	*this = *this * +complex;
 }
-void Complex::operator*=(const Fractions fraction)
-{
-	*this = *this * fraction;
-}
-void Complex::operator*=(const int term)
-{
-	*this = *this * term;
-}
 
 void Complex::operator/=(const Complex complex)
 {
 	*this = *this / +complex;
 }
-void Complex::operator/=(const Fractions fraction)
+
+void Complex::operator%=(const Complex complex)
 {
-	*this = *this / fraction;
-}
-void Complex::operator/=(const int term)
-{
-	*this = *this / term;
+	throw "Ñomplex numbers do not support operator %=";
 }
 
 bool Complex::operator==(const Complex complex) const
 {
 	if (_reZ == complex._reZ and _imZ == complex._imZ)
-		return true;
-	return false;
-}
-bool Complex::operator==(const Fractions fraction) const
-{
-	if (_reZ == fraction and _imZ == 0)
-		return true;
-	return false;
-}
-bool Complex::operator==(const int term) const
-{
-	if (_reZ == term and _imZ == 0)
 		return true;
 	return false;
 }
@@ -281,15 +212,33 @@ bool Complex::operator!=(const Complex complex) const
 		return false;
 	return true;
 }
-bool Complex::operator!=(const Fractions fraction) const
+
+bool Complex::operator<(const Complex complex) const
 {
-	if (_reZ == fraction and _imZ == 0)
-		return false;
-	return true;
+	throw "Ñomplex numbers do not support operator <";
+	return false;
 }
-bool Complex::operator!=(const int term) const
+
+bool Complex::operator>(const Complex complex) const
 {
-	if (_reZ == term and _imZ == 0)
-		return false;
-	return true;
+	throw "Ñomplex numbers do not support operator >";
+	return false;
+}
+
+bool Complex::operator<=(const Complex complex) const
+{
+	if (*this == complex)
+		return true;
+
+	throw "Ñomplex numbers do not support operator <= in this case";
+	return false;
+}
+
+bool Complex::operator>=(const Complex complex) const
+{
+	if (*this == complex)
+		return true;
+
+	throw "Ñomplex numbers do not support operator >= in this case";
+	return false;
 }

@@ -37,6 +37,7 @@ public:
 
 	Fractions& operator=(const Fractions fraction);
 	Fractions& operator=(const int number);
+	Fractions& operator=(const double number);
 
 	Fractions operator+() const;
 	Fractions operator-() const;
@@ -77,4 +78,7 @@ public:
 	bool operator!=(const Fractions fraction) const;
 	bool operator!=(const int temp) const;
 
+	operator int() const;
+
+	operator double() const;
 };
