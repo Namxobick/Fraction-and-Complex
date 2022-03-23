@@ -11,9 +11,11 @@ private:
     T2 _imZ;
 
 	template<class A, class B>
-    friend std::ostream& operator << (std::ostream& out, const Tcomplex<A, B>& ñomplex);
+    friend std::ostream& operator << (std::ostream& out, const Tcomplex<A, B>& complex);
+
 	template<class A, class B>
 	friend std::istream& operator >> (std::istream& in, Tcomplex<A, B>& complex);
+
 public:
     Tcomplex();
     Tcomplex(T1 reZ);
@@ -52,18 +54,18 @@ Tcomplex<T1, T2>::Tcomplex(T1 reZ)
 }
 
 template<class T1, class T2>
-std::ostream& operator<<(std::ostream& out, const Tcomplex<T1, T2>& ñomplex)
+std::ostream& operator<<(std::ostream& out, const Tcomplex<T1, T2>& complex)
 {
-	if (ñomplex._reZ == 0)
-		return out << ñomplex._imZ << "i" << std::endl;
+	if (complex._reZ == 0)
+		return out << complex._imZ << "i" << std::endl;
 
-	if (ñomplex._imZ == 0)
-		return out << ñomplex._reZ << std::endl;
+	if (complex._imZ == 0)
+		return out << complex._reZ << std::endl;
 
-	if (ñomplex._imZ < 0)
-		return out << ñomplex._reZ << " - " << ñomplex._imZ * (-1) << "i" << std::endl;
+	if (complex._imZ < 0)
+		return out << complex._reZ << " - " << complex._imZ * (-1) << "i" << std::endl;
 
-	return out << ñomplex._reZ << " + " << ñomplex._imZ << "i" << std::endl;
+	return out << complex._reZ << " + " << complex._imZ << "i" << std::endl;
 }
 
 template<class T1, class T2>
