@@ -123,8 +123,6 @@ Complex Complex::operator%(const Complex complex) const
 
 Complex Complex::operator!() const
 {
-	setlocale(LC_ALL, "Russian");
-	std::cout << "Оператор Внимание переопределён. Меняет местами части комплексного числа. Будьте осторожны!" << std::endl;
 	Complex result;
 	result._reZ = _imZ;
 	result._imZ = _reZ;
@@ -181,17 +179,17 @@ void Complex::operator+=(const Complex complex)
 
 void Complex::operator-=(const Complex complex)
 {
-	*this = *this - +complex;
+	*this = *this - complex;
 }
 
 void Complex::operator*=(const Complex complex)
 {
-	*this = *this * +complex;
+	*this = *this * complex;
 }
 
 void Complex::operator/=(const Complex complex)
 {
-	*this = *this / +complex;
+	*this = *this / complex;
 }
 
 void Complex::operator%=(const Complex complex)

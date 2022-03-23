@@ -1,2 +1,3 @@
-﻿  Сomplex.cpp
-  Inf.vcxproj -> C:\Users\Алёша\Downloads\Fraction-main (1)\Fraction-main\Inf\Debug\Inf.exe
+﻿  Inf.cpp
+C:\Users\Namxobick\source\repos\Inf\Inf.cpp(9,19): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+  Inf.vcxproj -> C:\Users\Namxobick\source\repos\Inf\Debug\Inf.exe

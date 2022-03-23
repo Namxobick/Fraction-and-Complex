@@ -145,6 +145,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Fractions.h" />
+    <ClInclude Include="Tcomplex.h" />
     <ClInclude Include="Сomplex.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
