@@ -1,3 +1,7 @@
 ﻿  Inf.cpp
-C:\Users\Namxobick\source\repos\Inf\Inf.cpp(9,19): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Namxobick\source\repos\Inf\Inf.cpp(18,32): warning C4244: аргумент: преобразование "double" в "T1", возможна потеря данных
+          with
+          [
+              T1=int
+          ]
   Inf.vcxproj -> C:\Users\Namxobick\source\repos\Inf\Debug\Inf.exe

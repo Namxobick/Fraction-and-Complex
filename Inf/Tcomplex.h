@@ -1,14 +1,15 @@
 #pragma once
 #include <iostream>
 #include <cassert>
+#include <complex>
 #include "Fractions.h"
 
 template<class T1, class T2>
 class Tcomplex
 {
 private:
-    T1 _reZ;
-    T2 _imZ;
+	Fractions _reZ;
+	Fractions _imZ;
 
 	template<class A, class B>
     friend std::ostream& operator << (std::ostream& out, const Tcomplex<A, B>& complex);
@@ -17,12 +18,26 @@ private:
 	friend std::istream& operator >> (std::istream& in, Tcomplex<A, B>& complex);
 
 public:
+
+	Fractions GetReZ(Tcomplex<T1, T2> complex) { return _reZ; };
+	Fractions GetImZ(Tcomplex<T1, T2> complex) { return _imZ; };
+
     Tcomplex();
     Tcomplex(T1 reZ);
     Tcomplex(T1 reZ, T2 imZ);
     Tcomplex(const Tcomplex& complex);
 
-	Tcomplex<T1, T2> operator+(const Tcomplex& complex) const;
+	template<class T3, class T4>
+	Tcomplex<Fractions, Fractions> operator+ (Tcomplex<T3, T4> complex) const;
+
+	template<class T3, class T4>
+	Tcomplex<Fractions, Fractions> operator- (Tcomplex<T3, T4> complex) const;
+
+	template<class T3, class T4>
+	Tcomplex<Fractions, Fractions> operator* (Tcomplex<T3, T4> complex) const;
+
+	template<class T3, class T4>
+	Tcomplex<Fractions, Fractions> operator/ (Tcomplex<T3, T4> complex) const;
 };
 
 template<class T1, class T2>
@@ -83,7 +98,36 @@ std::istream& operator>>(std::istream& in, Tcomplex<T1, T2>& complex)
 }
 
 template<class T1, class T2>
-Tcomplex<T1, T2> Tcomplex<T1, T2>::operator+(const Tcomplex& complex) const
+template <class T3, class T4>
+Tcomplex<Fractions, Fractions> Tcomplex<T1, T2>::operator+(Tcomplex<T3, T4> complex) const
 {
-	return { _reZ + complex._reZ, _imZ + complex._imZ };
+	return { this->_reZ + complex.GetReZ(complex), this->_imZ + complex.GetImZ(complex) };
 }
+
+template<class T1, class T2>
+template<class T3, class T4>
+Tcomplex<Fractions, Fractions> Tcomplex<T1, T2>::operator-(Tcomplex<T3, T4> complex) const
+{
+	return { this->_reZ - complex.GetReZ(complex), this->_imZ - complex.GetImZ(complex) };
+}
+
+template<class T1, class T2>
+template<class T3, class T4>
+Tcomplex<Fractions, Fractions> Tcomplex<T1, T2>::operator*(Tcomplex<T3, T4> complex) const
+{
+	Fractions reZ = this->_reZ * complex.GetReZ(complex) - this->_imZ * complex.GetImZ(complex);
+	Fractions imZ = _reZ * complex.GetImZ(complex) + _imZ * complex.GetReZ(complex);
+
+	return { reZ,  imZ };
+}
+
+template<class T1, class T2>
+template<class T3, class T4>
+Tcomplex<Fractions, Fractions> Tcomplex<T1, T2>::operator/(Tcomplex<T3, T4> complex) const
+{
+	Fractions reZ = (_reZ * complex.GetReZ(complex) + _imZ * complex.GetImZ(complex)) / (complex.GetReZ(complex) * complex.GetReZ(complex) + complex.GetImZ(complex) * complex.GetImZ(complex));
+	Fractions imZ = (_imZ * complex.GetReZ(complex) - _reZ * complex.GetImZ(complex)) / (complex.GetReZ(complex) * complex.GetReZ(complex) + complex.GetImZ(complex) * complex.GetImZ(complex));
+	return { reZ, imZ };
+}
+
+
