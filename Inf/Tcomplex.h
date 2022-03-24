@@ -24,13 +24,13 @@ public:
     Tcomplex(T1 reZ, T2 imZ);
     Tcomplex(const Tcomplex& complex);
 
-	Tcomplex<T1, T2> operator+ (Tcomplex<T1, T2> complex) const;
+	Tcomplex<T1, T2> operator+ (const Tcomplex<T1, T2> complex) const;
 
-	Tcomplex<T1, T2> operator- (Tcomplex<T1, T2> complex) const;
+	Tcomplex<T1, T2> operator- (const Tcomplex<T1, T2> complex) const;
 
-	Tcomplex<T1, T2> operator* (Tcomplex<T1, T2> complex) const;
+	Tcomplex<T1, T2> operator* (const Tcomplex<T1, T2> complex) const;
 
-	Tcomplex<T1, T2> operator/ (Tcomplex<T1, T2> complex) const;
+	Tcomplex<T1, T2> operator/ (const Tcomplex<T1, T2> complex) const;
 
 	Tcomplex<T1, T2>& operator=(const Tcomplex<T1, T2> complex) const;
 
@@ -100,19 +100,19 @@ std::istream& operator>>(std::istream& in, Tcomplex<T1, T2>& complex)
 }
 
 template<class T1, class T2>
-Tcomplex<T1, T2> Tcomplex<T1, T2>::operator+(Tcomplex<T1, T2> complex) const
+Tcomplex<T1, T2> Tcomplex<T1, T2>::operator+(const Tcomplex<T1, T2> complex) const
 {
 	return { this->_reZ + complex._reZ, this->_imZ + complex._imZ };
 }
 
 template<class T1, class T2>
-Tcomplex<T1, T2> Tcomplex<T1, T2>::operator-(Tcomplex<T1, T2> complex) const
+Tcomplex<T1, T2> Tcomplex<T1, T2>::operator-(const Tcomplex<T1, T2> complex) const
 {
 	return { this->_reZ - complex._reZ, this->_imZ - complex._imZ };
 }
 
 template<class T1, class T2>
-Tcomplex<T1, T2> Tcomplex<T1, T2>::operator*(Tcomplex<T1, T2> complex) const
+Tcomplex<T1, T2> Tcomplex<T1, T2>::operator*(const Tcomplex<T1, T2> complex) const
 {
 	Fractions reZ = this->_reZ * complex._reZ - this->_imZ * complex._imZ;
 	Fractions imZ = _reZ * complex._imZ + _imZ * complex._reZ;
@@ -121,7 +121,7 @@ Tcomplex<T1, T2> Tcomplex<T1, T2>::operator*(Tcomplex<T1, T2> complex) const
 }
 
 template<class T1, class T2>
-Tcomplex<T1, T2> Tcomplex<T1, T2>::operator/(Tcomplex<T1, T2> complex) const
+Tcomplex<T1, T2> Tcomplex<T1, T2>::operator/(const Tcomplex<T1, T2> complex) const
 {
 	Fractions reZ = (_reZ * complex._reZ + _imZ * complex._imZ) / (complex._reZ * complex._reZ + complex._imZ * complex._imZ);
 	Fractions imZ = (_imZ * complex._reZ - _reZ * complex._imZ) / (complex._reZ * complex._reZ + complex._imZ * complex._imZ);
@@ -129,7 +129,7 @@ Tcomplex<T1, T2> Tcomplex<T1, T2>::operator/(Tcomplex<T1, T2> complex) const
 }
 
 template<class T1, class T2>
-Tcomplex<T1, T2>& Tcomplex<T1, T2>::operator=(Tcomplex<T1, T2> complex) const
+Tcomplex<T1, T2>& Tcomplex<T1, T2>::operator=(const Tcomplex<T1, T2> complex) const
 {
 	_reZ = complex._reZ;
 	_imZ = complex._imZ;
