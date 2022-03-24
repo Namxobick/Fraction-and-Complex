@@ -19,8 +19,8 @@ private:
 
 public:
 
-	Fractions GetReZ(Tcomplex<T1, T2> complex) { return _reZ; };
-	Fractions GetImZ(Tcomplex<T1, T2> complex) { return _imZ; };
+	Fractions GetReZ() { return _reZ; };
+	Fractions GetImZ() { return _imZ; };
 
     Tcomplex();
     Tcomplex(T1 reZ);
@@ -101,22 +101,22 @@ template<class T1, class T2>
 template <class T3, class T4>
 Tcomplex<Fractions, Fractions> Tcomplex<T1, T2>::operator+(Tcomplex<T3, T4> complex) const
 {
-	return { this->_reZ + complex.GetReZ(complex), this->_imZ + complex.GetImZ(complex) };
+	return { this->_reZ + complex.GetReZ(), this->_imZ + complex.GetImZ() };
 }
 
 template<class T1, class T2>
 template<class T3, class T4>
 Tcomplex<Fractions, Fractions> Tcomplex<T1, T2>::operator-(Tcomplex<T3, T4> complex) const
 {
-	return { this->_reZ - complex.GetReZ(complex), this->_imZ - complex.GetImZ(complex) };
+	return { this->_reZ - complex.GetReZ(), this->_imZ - complex.GetImZ() };
 }
 
 template<class T1, class T2>
 template<class T3, class T4>
 Tcomplex<Fractions, Fractions> Tcomplex<T1, T2>::operator*(Tcomplex<T3, T4> complex) const
 {
-	Fractions reZ = this->_reZ * complex.GetReZ(complex) - this->_imZ * complex.GetImZ(complex);
-	Fractions imZ = _reZ * complex.GetImZ(complex) + _imZ * complex.GetReZ(complex);
+	Fractions reZ = this->_reZ * complex.GetReZ() - this->_imZ * complex.GetImZ();
+	Fractions imZ = _reZ * complex.GetImZ() + _imZ * complex.GetReZ();
 
 	return { reZ,  imZ };
 }
@@ -125,8 +125,8 @@ template<class T1, class T2>
 template<class T3, class T4>
 Tcomplex<Fractions, Fractions> Tcomplex<T1, T2>::operator/(Tcomplex<T3, T4> complex) const
 {
-	Fractions reZ = (_reZ * complex.GetReZ(complex) + _imZ * complex.GetImZ(complex)) / (complex.GetReZ(complex) * complex.GetReZ(complex) + complex.GetImZ(complex) * complex.GetImZ(complex));
-	Fractions imZ = (_imZ * complex.GetReZ(complex) - _reZ * complex.GetImZ(complex)) / (complex.GetReZ(complex) * complex.GetReZ(complex) + complex.GetImZ(complex) * complex.GetImZ(complex));
+	Fractions reZ = (_reZ * complex.GetReZ() + _imZ * complex.GetImZ()) / (complex.GetReZ() * complex.GetReZ() + complex.GetImZ() * complex.GetImZ());
+	Fractions imZ = (_imZ * complex.GetReZ() - _reZ * complex.GetImZ()) / (complex.GetReZ() * complex.GetReZ() + complex.GetImZ() * complex.GetImZ());
 	return { reZ, imZ };
 }
 

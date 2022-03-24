@@ -17,7 +17,7 @@ int main()
 
 	Tcomplex<int, Fractions> Tcm1(5.6, fr1);
 	Tcomplex<Fractions, int> Tcm2(fr3, 5); 
-
+	
 	std::cout << Tcm1 + Tcm2 + Tcomplex<int, int>(5) + Tcomplex<Fractions, int>(fr2, 7) << std::endl;
 
 	std::cout << Tcm1 - Tcm2 - Tcomplex<int, int>(5) - Tcomplex<Fractions, int>(fr2, 7) << std::endl;
