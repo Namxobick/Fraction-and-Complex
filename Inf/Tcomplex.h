@@ -32,7 +32,7 @@ public:
 
 	Tcomplex<T1, T2> operator/ (const Tcomplex<T1, T2> complex) const;
 
-	Tcomplex<T1, T2>& operator=(const Tcomplex<T1, T2> complex) const;
+	Tcomplex<T1, T2>& operator=(const Tcomplex<T1, T2> complex);
 
 	template<class T3, class T4>
 	operator Tcomplex<T3, T4>()
@@ -129,7 +129,7 @@ Tcomplex<T1, T2> Tcomplex<T1, T2>::operator/(const Tcomplex<T1, T2> complex) con
 }
 
 template<class T1, class T2>
-Tcomplex<T1, T2>& Tcomplex<T1, T2>::operator=(const Tcomplex<T1, T2> complex) const
+Tcomplex<T1, T2>& Tcomplex<T1, T2>::operator=(const Tcomplex<T1, T2> complex)
 {
 	_reZ = complex._reZ;
 	_imZ = complex._imZ;
